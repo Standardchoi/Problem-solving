@@ -9,7 +9,7 @@ for _ in range(t):
     emp = int(input().strip())
 
     inputtarget = input().strip()
-    if len(inputtarget)>3:
+    if len(inputtarget)>2:
         tar = deque(inputtarget[1:-1].split(','))
     else:
         tar = []
@@ -23,6 +23,7 @@ for _ in range(t):
                 dir = 'rig'
             elif i =='D' and len(tar)==0:
                 state = 'error'
+                
                 break
             elif i == 'D':
                 tar.popleft()
@@ -30,6 +31,7 @@ for _ in range(t):
             if i == 'R':
                 dir = 'lef'
             elif i =='D' and len(tar)==0:
+                
                 state = 'error'
                 break
             elif i == 'D':
