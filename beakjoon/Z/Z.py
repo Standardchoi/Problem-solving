@@ -3,32 +3,25 @@ n,r,c = map(int,input().split())
 l = 2**n
 #li =  [[0 for _ in range(l)] for _ in range(l)]
 
-num = -1
+num = 0
 def divc(x,y,l):
     global num
     global r,c
-    if x ==r and y==c:
-
-        num+=1
-        #li[x][y] = num
-        return 
-    if l == 2:
-        num+=1
-        #li[x][y] = num
-        num+=1
-        #li[x][y+1] = num
-        num+=1
-        #li[x+1][y] = num
-        num+=1
-        #li[x+1][y+1] = num
+    
+    if l == 1:
         return
-    else:
+    
+    if x<l//2 and y<l//2:
         divc(x,y,l//2)
-        divc(x,y+l//2,l//2)
-        divc(x+l//2,y,l//2)
-        divc(x+l//2,y+l//2,l//2)
-        
-
-divc(0,0,l)
+    elif x<l//2 and y>=l//2:
+        num+=(l//2)**2
+        divc(x,y-l//2,l//2)
+    elif x>=l//2 and y<l//2:
+        num+=2*(l//2)**2
+        divc(x-l//2,y,l//2)
+    else:
+        num+=3*(l//2)**2
+        divc(x-l//2,y-l//2,l//2)
+divc(r,c,l)
 
 print(num)
