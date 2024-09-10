@@ -1,23 +1,25 @@
 from itertools import combinations, permutations
-
+import sys
+sys.setrecursionlimit(10**6)
+input = sys.stdin.readline
 n,m = map(int, input().split())
 li = list(map(int,input().split()))
-li.sort()
-print(li)
-nn = len(li)
-ans = []
+li = sorted(list(set(li))) # 중복 제거후 정렬
+n = len(li)
+answer = list()
+seq = set()
 
 def comb(a,st):
-    global nn
-    if a ==m:
-        print(st)
+    if len(st) ==m:
+        for i in range(len(st)):
+            print(st[i],end=' ')
+        print()
         return
-    else:
-        for i in range(nn):
-            st = st+f"{li[i]}"
-            comb(a+1,st)
-   
-    
-comb(0,'')
-
+    for i in range(a,n):
+        s = []
+        s.append(li[i])
+        s = st+s
+        comb(i,s)
+        
+comb(0,[])
 
